@@ -1,27 +1,42 @@
-# PokemonDeckbuilder
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
-## Development server
+TESTE - Para conhecermos um pouco mais do seu lado técnico, gostaríamos de propor um desafio, no qual não existe resposta certa ou errada, mas permitirá mostrar mais o seu jeito de desenvolver.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+ 
+A ideia é bem simples e o desafio também, gostaríamos de uma aplicação que consulte a api de pokemon TCG (https://docs.pokemontcg.io/#api_v1cards_list) e que nossos jogadores pudessem montar um baralho em cima dela. 
+ 
+O projeto deve ser feito usando o Angular 8+, Tailwind e uma biblioteca UI de sua preferência, se for infragistics seria melhor ainda, só que temos alguns requisitos obrigatórios:
 
-## Code scaffolding
+Lista de baralhos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    O usuário pode ver seus baralhos;
+    O usuário pode criar um novo baralho;
+    O usuário pode remover um baralho;
+    O usuário pode editar um baralho;
+    O usuário pode clicar num baralho para visualizar seus detalhes.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Criação de um baralho
 
-## Running unit tests
+    O usuário pode colocar um nome no seu baralho;
+    O usuário pode inserir cartas no baralho;
+    O baralho tem que ter no mínimo 24 cartas e no máximo 60;
+    Só podem ter 4 cartas com o mesmo nome, no baralho. (Nome não id);
+    Após salvar o baralho voltamos para a página de lista de baralhos atualizada;
+    O baralho será salvo apenas em memória.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+Detalhes do baralho
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    O usuário consegue ver quantos pokemons e cartas de treinador existem no baralho. (atributo supertype)
+    O usuário consegue ver de quantas cores é o baralho, quantos types únicos existem no baralho.
 
-## Further help
+ 
+Quanto a interface, vamos deixar a sua criatividade falar mais alto, capriche nas suas ideias, nos surpreenda.
+ 
+Disponibilize o seu código no github ou bitbucket e compartilhe com a gente da Agência Estado, não deixe de detalhar no readme do projeto qual arquitetura, funcionalidades e ambiente de desenvolvimento utilizou.
+ 
+Pedimos que nos envie para um Code Review em até uma semana.
+Aguardamos seu retorno e caso tenha algum problema ou dúvida nos avise.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Prazo: 31/10

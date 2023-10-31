@@ -1,0 +1,19 @@
+<form [formGroup]="form" (ngSubmit)="submit(form.value.term)">
+    <div class="flex justify-start flex-row m-4 gap-3">
+        <igx-input-group type="border">
+            <input igxInput type="text" style="min-width: 400px;" formControlName="term" size="medium" />
+            <label igxLabel for="term">{{inputLabel}}</label>
+            <igx-suffix (click)="submit(form.value.term)">
+                <igx-icon *ngIf="!isLoading">search</igx-icon>
+                <igx-circular-bar *ngIf="isLoading" [animate]="false" [indeterminate]="true" [textVisibility]="false">
+                </igx-circular-bar>
+            </igx-suffix>
+        </igx-input-group>
+        <!-- <div class="self-center">
+            <button
+                class="p-4 bg-purple-500 text-white focus:bg-white focus:text-purple-500 hover:bg-white hover:text-purple-500"
+                type="submit" igxButton="raised" igxRipple="purple" [value]="'medium'">Pesquisar<igx-icon
+                    fontSet="material" class="pt-0.5">search</igx-icon></button>
+        </div> -->
+    </div>
+</form>

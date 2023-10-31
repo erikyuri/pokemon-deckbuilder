@@ -1,0 +1,86 @@
+<body class="overflow-y-scroll">
+    <header class="block text-center">
+        <h2 class="text-purple-500 mt-4 mb-0">Pokemon DeckBuilder</h2>
+        <label class="text-gray-500 text-sm">Seja bem-vindo ao melhor site para construir seus decks.</label>
+    </header>
+    <div class="flex justify-center mt-4 z-1">
+        <app-search-input (buttonClick)="searchDecks($event)" [inputLabel]="'Insira o nome do deck'"></app-search-input>
+        <button
+            class="p-2 w-32 h-14 self-center bg-purple-500 text-white focus:bg-white focus:text-purple-500 hover:bg-white hover:text-purple-500"
+            type="button" igxButton="raised" igxRipple="purple" value='medium' (click)="newDeck()">
+            Novo Deck
+        </button>
+    </div>
+
+    <section class="w-full h-full  mt-10">
+
+        <div class="flex flex-wrap w-1200 my-6 mx-auto gap-10 justify-evenly">
+
+            <igx-card *ngFor="let deck of decks;index as i" (click)="checkDetails(deck)" class="hover:cursor-pointer">
+                <igx-card-media height="180px">
+                    <img [src]="deck.imageUrl" class="object-contain bg-slate-200">
+                </igx-card-media>
+
+                <igx-card-header class="text-center text-gray-500">
+                    <h3 igxCardHeaderTitle>{{ deck.name }}</h3>
+                </igx-card-header>
+
+                <igx-card-actions>
+                    <button igxButton igxRipple igxStart (click)="editDeck(deck.name)">Editar Deck</button>
+                    <button igxButton igxRipple igxStart (click)="deleteDeck(i)">Deletar Deck</button>
+                </igx-card-actions>
+
+            </igx-card>
+        </div>
+
+    </section>
+</body>
+
+<div class="flex justify-center" [ngStyle]="{'visibility': 'hidden' ? 'hidden' : !isModal}">
+
+    <igx-card #cardList>
+
+        <igx-card-header class="flex justify-between">
+        </igx-card-header>
+
+        <igx-card-content class="flex flex-row gap-3 overflow-x-hidden flex-wrap justify-center">
+
+            <div class="flex flex-col flex-wrap grow gap-1 justify-start m-4" style="min-width: 750px;">
+
+                <div class="flex text-gray-500 text-xl justify-around">
+                    <label>Pokémon Cards <span class="text-purple-500">{{getPokemon()}}</span></label>
+                    <label>Trainer Cards <span class="text-purple-500">{{getTrainer()}}</span></label>
+                    <label>Energy Cards <span class="text-purple-500">{{getEnergy()}}</span></label>
+
+                    <label>Types <span class="text-purple-500">{{getTypes()}}</span></label>
+
+                    <label>Deck Size <span class="text-purple-500">{{selectedDeck.deckSize}}/60</span></label>
+                </div>
+
+                <div class="flex justify-start mt-4 flex-row flex-wrap gap-1">
+
+                    <div *ngFor="let card of selectedDeck.cards" class="w-60 h-11 rounded bg-no-repeat mb-1 text-ellipsis 
+                overflow-hidden whitespace-nowrap hover:cursor-pointer text-left text-white p-2" [ngStyle]="{
+                        'background-image': 'linear-gradient(to left, transparent, #000000 85%),url(' + card.images?.small + ')',
+                        'background-position': '111% 27%',
+                        'background-size': '45%',
+                        'background-color': '#000000'
+                }">
+
+                        <label class="px-2 bg-blue-500">
+                            {{card.quantity}}
+                        </label>
+                        <label class="ml-2">
+                            {{card.name + ' (' + card.set?.name! + ')'}}
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </igx-card-content>
+
+    </igx-card>
+
+</div>

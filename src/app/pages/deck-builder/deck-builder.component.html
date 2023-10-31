@@ -1,0 +1,102 @@
+<header class="block text-center">
+    <h2 class="text-purple-500 mt-4 mb-0">Pokemon DeckBuilder</h2>
+</header>
+
+<div class="wrapper">
+
+    <div class="flex justify-center mt-4 z-1">
+        <app-search-input (buttonClick)="buscarCards($event)" [inputLabel]="'Insira o nome da carta'"
+            [isLoading]="isLoading"></app-search-input>
+    </div>
+
+    <div class="flex w-1200 min-h-full ml-auto mr-auto border-solid border-gray-300 border-2 shadow-lg justify-between">
+
+        <div class="flex flex-col self-start grow gap-3 justify-center mt-4 mx-5" style="min-width: 300px;">
+            <form [formGroup]="form" class="flex flex-row justify-between ml-5">
+                <igx-input-group>
+                    <input igxInput formControlName="deckName"
+                        style="min-width: 300px; font-size: 24px;color: rgb(168 85 247);" type="text" size="large" />
+                    <label igxLabel for="deckName">Nome do deck</label>
+                </igx-input-group>
+            </form>
+            <div class="h-full w-full p-4 " *ngIf="!url">
+
+                <img src="../../../assets/img/CardBack.jpg" class="bg-contain w-80 h-96">
+
+            </div>
+            <div class="h-full w-full p-4 " *ngIf="url">
+
+                <img [src]="url" class="bg-contain w-80 h-96">
+
+            </div>
+
+            <div class="w-full mb-3 ml-2">
+                <button
+                    class="p-4 bg-purple-500 text-white focus:bg-white focus:text-purple-500 hover:bg-white hover:text-purple-500 w-full"
+                    type="button" igxButton="raised" igxRipple="purple" [value]="'medium'" (click)="submit()">
+                    Salvar Deck
+                </button>
+            </div>
+        </div>
+
+        <div class="flex flex-col flex-wrap grow gap-1 justify-start m-4" style="min-width: 750px;">
+
+            <div class="flex text-gray-500 text-xl justify-around">
+                <label>Pokémon Cards <span class="text-purple-500">{{getPokemon()}}</span></label>
+                <label>Trainer Cards <span class="text-purple-500">{{getTrainer()}}</span></label>
+                <label>Energy Cards <span class="text-purple-500">{{getEnergy()}}</span></label>
+
+                <label>Types <span class="text-purple-500">{{getTypes()}}</span></label>
+
+                <label>Deck Size <span class="text-purple-500">{{deck.deckSize}}/60</span></label>
+            </div>
+
+            <div class="flex justify-start mt-4 flex-row flex-wrap gap-1">
+
+                <div *ngFor="let card of deck.cards" class="w-60 h-11 rounded bg-no-repeat mb-1 text-ellipsis 
+                overflow-hidden whitespace-nowrap hover:cursor-pointer text-left text-white p-2" [ngStyle]="{
+                        'background-image': 'linear-gradient(to left, transparent, #000000 85%),url(' + card.images?.small + ')',
+                        'background-position': '111% 27%',
+                        'background-size': '45%',
+                        'background-color': '#000000'
+                }" (click)="removeCard(card)" (mouseenter)="displayImage(card.images?.large!)">
+
+                    <label class="px-2 bg-blue-500">
+                        {{card.quantity}}
+                    </label>
+                    <label class="ml-2">
+                        {{card.name + ' (' + card.set?.name! + ')'}}
+                    </label>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<div class="flex justify-center" [ngStyle]="{'visibility': 'hidden' ? 'hidden' : !isModal}">
+
+    <igx-card #cardList>
+
+        <igx-card-header class="flex justify-between">
+            <h3 igxCardHeaderTitle class="text-center block text-purple-500">Resultado da pesquisa: </h3>
+            <label igxCardHeaderTitle class="text-gray-500 text-center block">Clique para adicionar ao
+                deck</label>
+        </igx-card-header>
+
+        <igx-card-content class="flex flex-row gap-3 overflow-x-hidden flex-wrap justify-center">
+
+            <div *ngFor="let card of cards" class=" border-solid border-gray-300 border-2 hover:cursor-pointer">
+                <img [src]="card.images?.small" class="bg-contain h-350 w-250" (click)="addCard(card)">
+            </div>
+
+        </igx-card-content>
+
+    </igx-card>
+
+</div>
+<igx-toast #toast [displayTime]="3000" class="igx-toast-error"></igx-toast>
+<igx-toast #toastAdd [displayTime]="2000" class="igx-toast-success"></igx-toast>

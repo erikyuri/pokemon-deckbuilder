@@ -1,0 +1,35 @@
+.igx-input-group__bundle-end {
+    background-color: rgb(192 132 252 / var(--tw-bg-opacity));
+}
+
+::ng-deep .igx-overlay__content--modal {
+    width: auto !important;
+}
+
+
+igx-card {
+    min-width: 800px;
+    max-width: 1200px;
+    height: 700px;
+    background: rgb(248 250 252);
+    box-shadow: 10px 10px 5px 0px rgba(196, 178, 178, 0.75);
+}
+
+.igx-toast-error {
+    background-color: rgb(219, 74, 74);
+    margin-top: 25px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.igx-toast-success {
+    background-color: rgb(74 222 128);
+    margin-top: 25px;
+    font-size: 16px;
+    border-radius: 10px;
+
+}
+
+igx-input:focus-visible {
+    outline: none;
+}
